@@ -25,7 +25,11 @@ angular
         localStorageServiceProvider
             .setPrefix('timax')
             .setStorageType('localStorage')
-            .setNotify(true, true)
+            .setNotify(true, true);
+    })
+
+    .config(function ($httpProvider) {
+        $httpProvider.interceptors.push('authTokenInterceptor');
     })
 
     .config(function ($routeProvider) {
