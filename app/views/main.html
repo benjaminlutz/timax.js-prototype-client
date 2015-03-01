@@ -2,5 +2,5 @@
   <h1>Welcome</h1>
   <p class="lead">
   </p>
-  <p><a class="btn btn-lg btn-success" ng-href="#/">Login and get Token<span class="glyphicon glyphicon-ok"></span></a></p>
+  <p><a class="btn btn-lg btn-primary" ng-disabled="hasToken" ng-class="{'btn-success': hasToken }" ng-click="doLogin()">Login and get Token<span ng-class="{'glyphicon glyphicon-ok': hasToken }"></span></a></p>
 </div>

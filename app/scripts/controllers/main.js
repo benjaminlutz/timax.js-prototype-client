@@ -8,10 +8,12 @@
  * Controller of the timaxjsPrototypeClientApp
  */
 angular.module('timaxjsPrototypeClientApp')
-  .controller('MainCtrl', function ($scope) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
-  });
+    .controller('MainCtrl', function ($scope, tokenService) {
+        $scope.hasToken = false;
+
+        $scope.doLogin = function () {
+            tokenService.getToken().then(function () {
+                $scope.hasToken = true;
+            });
+        };
+    });
