@@ -8,10 +8,23 @@
  * Controller of the timaxjsPrototypeClientApp
  */
 angular.module('timaxjsPrototypeClientApp')
-  .controller('BookingsCtrl', function ($scope) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
-  });
+    .controller('BookingsCtrl', function ($scope, bookingService, bookings) {
+        $scope.bookings = bookings.data;
+
+        $scope.newBooking = {
+            name: '',
+            start: '',
+            end: ''
+        };
+
+        $scope.saveNewBooking = function () {
+            bookingService.saveBooking($scope.newBooking).then(function (response) {
+                $scope.bookings.push(response.data);
+                $scope.newBooking = {
+                    name: '',
+                    start: '',
+                    end: ''
+                };
+            });
+        };
+    });

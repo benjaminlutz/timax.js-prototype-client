@@ -8,6 +8,17 @@
  * Service in the timaxjsPrototypeClientApp.
  */
 angular.module('timaxjsPrototypeClientApp')
-  .service('booking', function () {
-    // AngularJS will instantiate a singleton by calling "new" on this function
-  });
+
+    .factory('bookingService', function ($http) {
+        var factoryObject = {};
+
+        factoryObject.getBookings = function () {
+            return $http.get('http://localhost:3000/booking');
+        };
+
+        factoryObject.saveBooking = function (newBooking) {
+            return $http.post('http://localhost:3000/booking', newBooking);
+        };
+
+        return factoryObject;
+    });
