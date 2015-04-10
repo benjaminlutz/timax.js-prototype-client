@@ -8,7 +8,7 @@
  * Controller of the timaxjsPrototypeClientApp
  */
 angular.module('timaxjsPrototypeClientApp')
-    .controller('BookingsCtrl', function ($scope, bookingService, bookings) {
+    .controller('BookingsCtrl', function ($scope, bookingService, bookings, timaxSocket) {
         $scope.bookings = bookings.data;
 
         $scope.newBooking = {
@@ -27,4 +27,8 @@ angular.module('timaxjsPrototypeClientApp')
                 };
             });
         };
+
+        $scope.$on('socket:booking', function (ev, data) {
+            console.log(data);
+        });
     });

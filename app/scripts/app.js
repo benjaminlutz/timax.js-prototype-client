@@ -18,8 +18,21 @@ angular
         'ngRoute',
         'ngSanitize',
         'ngTouch',
-        'LocalStorageModule'
+        'LocalStorageModule',
+        'btford.socket-io'
     ])
+
+    .factory('timaxSocket', function (socketFactory, localStorageService) {
+        var token = localStorageService.get('token');
+
+        var timaxSocket = socketFactory({
+            ioSocket: io.connect('http://localhost:3000/', {
+                query: 'token=' + token
+            })
+        });
+        timaxSocket.forward('booking');
+        return timaxSocket;
+    })
 
     .config(function (localStorageServiceProvider) {
         localStorageServiceProvider
